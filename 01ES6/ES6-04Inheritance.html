@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ES6-04Inheritance.html </title>
+    <script>
+    //부모클래스
+    class Car {
+        //생성자함수
+        constructor(b){
+            this.brand = b;
+        }
+        //멤버함수 : 화살표함수를 통해 정의함. 항상 this가 유지됨.
+        showCar = () => {
+            return "내 자동차의 제조사는 " + this.brand + ' 입니다.';
+        }
+    }
+    console.error("ES6의 Class 생성");  //콘솔 출력시 빨간색으로 표현됨 (에러발생한거X)
+    myCar = new Car("아우디");
+    console.log(myCar.brand);
+    console.log(myCar.showCar());
+    </script>
+    <script>
+    //자식클래스 : Car를 상속한다.
+    class Model extends Car {
+        constructor(b,m){
+            super(b);  //부모의 생성자 호출
+            this.model = m;
+        }
+        showModel(){
+            //상속했으므로 부모쪽 멤버(showCar)도 호출 가능 
+            return this.showCar() + ' 내 자동차의 이름은 ' + this.model + ' 입니다.';
+        }
+    }
+
+    console.error("ES6의 상속");
+    modelCar = new Model("Ford", "Mustang");
+    console.log(modelCar.showModel());
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
