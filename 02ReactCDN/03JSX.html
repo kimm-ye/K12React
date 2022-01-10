@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+</head>
+<body>
+    <!-- 
+    JSX(JavaScript XML)
+    - React.js에서 HTML을 좀 더 쉽게 사용하기 위해 작성된다.
+    - 만약 JSX가 없다면 React.createElement() 함수를 사용해야 하므로 불편해진다.
+    - 컴파일 하기에 최적화되고, 빠른 속도를 가진다.
+    - class 형태로 만들어진 컴포넌트에서는 반드시 render()함수가 존재햐아 하고
+      그 내부에서는 JSX를 return하도록 코딩해야 한다.
+    - 최상위 엘리먼트가 반드시 한개만 존재해야 한다.
+    -->
+    <h2>JSX(JavaScript XML)사용시</h2>
+    <div id="myDiv1"></div>
+
+    <style>
+        #soBig{color: red;}
+    </style>
+    <h2>JSX미사용시</h2>
+    <div id="myDiv2"></div>
+
+    <h2>JSX Curly Braces(표현식: {})</h2>
+    <div id="myDiv3"></div>
+
+    <h2>JSX에 블럭단위의 HTML 삽입</h2>
+    <div id="myDiv4"></div>
+
+    <h2>하나의 최상위 엘리먼트만 포함할 수 있음</h2>
+    <div id="myDiv5"></div>
+
+    <!-- CDN 방식이라 type="text/babel" 작성해야함 -->
+    <script type="text/babel">
+        /*
+        JSX를 사용하여 렌더링한다. HTML 태그 형태와 유사하게 기술하면 되므로 편리하다.
+        */
+        const jsxElement = <h4>JSX 좋아요~</h4>
+        ReactDOM.render(jsxElement, document.getElementById('myDiv1'));
+
+        /*
+        JSX없이 출력하고자 할때는 React.createElement() 함수를 이용한다.
+        형식] React.createElement(엘리먼트타입, 속성값, 출력할내용)
+        */
+        const ceElement = React.createElement('h4', {id:'soBig'}, 'JSX가 없을땐 이렇게 해욤~');
+        /*
+        createElement()를 통해 <h4 id='soBig'>내용</h4>와 같이 만들어진다.
+        */
+        ReactDOM.render(ceElement, document.getElementById('myDiv2'));
+
+        /*
+        Curly Braces(표현식)
+            : 중괄호로 주로 표현되며, React변수 또는 속성, 계산식등을 실행하고
+            결과를 리턴하는 역할을 한다.
+        */
+        const outElement = <h4>표현식은 콧수염을 이용합니다 : {5+5} </h4>;
+        ReactDOM.render(outElement, document.getElementById('myDiv3'));
+
+        /*
+        JSX는 XML 규칙을 따르므로 HTML 엘리먼트를 올바르게 열고 닫아야 한다.
+        Pair(쌍)을 이루고 있는 태그의 경우 시작태그와 종료태그를 반드시 기술해야 하고
+        img 태그와 같이 단독으로 사용되는 경우에는 마지막에 < />와 같이 슬러쉬를
+        기술해야 한다.
+
+        만약 기술하지 않으면 전체적으로 오류가 생긴다.
+        왜냐하면 xml은 /하나만 잘못써도 전체 오류가 생기는데 이러한 xml규칙을 따르기 때문이다.
+        진짜 HTML 이 아니다.
+        */
+        const fruitElement = (
+            <ul>
+                <li>사과</li>
+                <li>바나나</li>
+                <li>체리</li>
+                <li><img src='http://peoplink.godo.co.kr/shop/data/goods/1501810660895m0.jpg' width="150" /></li>
+                <li><img src='http://peoplink.godo.co.kr/shop/data/goods/1501810660895m0.jpg' width="150"></img></li>
+            </ul>
+        );
+        //위 img 태그에서 마지막 / 가 빠지면 에러 발생됨
+        ReactDOM.render(fruitElement, document.getElementById('myDiv4'));
+
+        /*
+            JSX에서는 최상위 엘리먼트가 한개만 있는 형태로 작성해야 한다.
+            아래의 경우 div태그를 제거하면 에러가 발생한다.
+            또한 JSX내에서는 HTML주석을 사용할 수 없다. 
+            일반적으로 JS의 블럭단위 주석을 사용한다.
+        */
+        const topElement = (
+            <div>
+                <h4>최상위 엘리먼트의</h4>
+                <h4>하위 엘리먼트 형태로 작성해야함</h4>
+            </div>
+            /* 상위레벨의 태그가 2개 이상이면 에러발생됨 */
+        );
+        ReactDOM.render(topElement, document.getElementById('myDiv5'));
+    </script>
+</body>
+</html>
