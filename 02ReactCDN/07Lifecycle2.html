@@ -87,6 +87,12 @@
             }, 2000);
         }
         //state가 업데이트 되기 이전의 값을 반환한다.
+        /*
+        만약 지금은 하단 렌더링 부분에 props로 받은게 없어서 
+        prevProps.hotplace로 하면 아무것도 출력되지 않는다.
+        업데이트 이전 props를 쓰려면 prevState대신 prevProps를 쓰면 된다.
+        document.getElementById("div1").innerHTML = "업데이트 이전 : " + prevProps.hotPlace;
+        */
         getSnapshotBeforeUpdate(prevProps, prevState){
             document.getElementById("div1").innerHTML = "업데이트 이전 : " + prevState.hotPlace;
         }
