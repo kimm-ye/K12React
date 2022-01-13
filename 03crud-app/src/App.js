@@ -71,7 +71,7 @@ class App extends Component{
     else if(this.state.mode === 'create'){
       //create일 때는 입력폼이 보인다.
       //자식 컴포넌트에서 폼값을 받기 위해 onSubmitValue props를 내려준다.
-      _article = <CreateForm onSubmitValue={function(_title, _desc){
+      _article = <CreateForm onSubmitValue={(_title, _desc) => {
         console.log(_title, _desc);
 
         //일련번호 부여를 위해 +1 증가
@@ -87,7 +87,7 @@ class App extends Component{
           mode : 'read',
           selected_content_id : this.max_content_id
         });
-      }.bind(this)}></CreateForm>;
+      }}></CreateForm>;
     }
 
     else if(this.state.mode === 'update'){
@@ -109,7 +109,7 @@ class App extends Component{
       }
       //read인 경우에도 내용이 보인다.
       _article = <UpdateForm readData = {_readData}
-        onSubmitValue={function(_id, _title, _desc){
+        onSubmitValue={(_id, _title, _desc) => {
         //전송된 폼값을 확인 (여기서 id는 일련번호를 말한다.)
         console.log(_id, _title, _desc);
 
@@ -133,7 +133,7 @@ class App extends Component{
           contents : _contents,
           mode : 'read'
         });
-      }.bind(this)}></UpdateForm>
+      }}></UpdateForm>
     }
 
     else if(this.state.mode === 'delete'){
@@ -151,10 +151,10 @@ class App extends Component{
         */}
         <Subject 
           title={this.state.subject.title} sub={this.state.subject.sub}
-          onChangePage={function(){
+          onChangePage={() => {
             //alert("이벤트 확인용(부모)");
             this.setState({mode:'welcome'});
-          }.bind(this)}></Subject>
+          }}></Subject>
 
         {/* 
         Navi컴포넌트로 state 변경 기능을 가진 함수를 props로 내려준다.
@@ -162,16 +162,16 @@ class App extends Component{
         이를 통해 state값을 변경한다. 
         */}
         <Navi data={this.state.contents}
-          onChangePage={function(id){
+          onChangePage={(id) => {
             //console.log('이벤트확인용(Navi)')
             console.log('content_id : ', id);
             this.setState({
               mode : 'read',
               selected_content_id : Number(id)
             });
-          }.bind(this)}></Navi>
+          }}></Navi>
 
-        <Buttons onChangeMode={function(btn_mode){
+        <Buttons onChangeMode={(btn_mode) => {
           //원래는 버튼 누르면서 모드 바뀌면서 렌더링 한번 위에 delete가서 렌더링 한번 두번이 된다.
           //여기서 삭제 처리를 하면 렌더링을 한번만 해도 되므로 효율적이다.
           if(btn_mode === 'delete'){
@@ -204,7 +204,7 @@ class App extends Component{
               mode : btn_mode
             });
           }
-        }.bind(this)}></Buttons>
+        }}></Buttons>
 
         {/* content와 article은 동시에 출력되면 안되므로 if문 처리를 위해 변수로 컴포넌트를 저장한다. */}
         {_article}
