@@ -77,7 +77,7 @@ class App extends Component{
         //일련번호 부여를 위해 +1 증가
         this.max_content_id = this.max_content_id +1;
         //일련번호와 폼값을 이용해서 새로운 객체를 추가한다.
-        //concat()함수는 배열을 추가하는 기능도 가지고 있다.
+        //concat()함수는 배열을 추가하는 기능도 가지고 있다. (여기서 push가 아닌 concat을 쓰는 이유는 push는 오리지널 데이터가 수정되고, concat은 수정되지 않기 떄문이다.)
         var _contents = this.state.contents.concat(
           {id:this.max_content_id, title:_title, desc:_desc}
         );
