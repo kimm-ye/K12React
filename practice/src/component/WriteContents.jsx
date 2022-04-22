@@ -18,7 +18,7 @@ class WrtieContent extends Component{
                     <tr>
                         <th width="20%">아이디</th>
                         <td width="80%">
-                            <input type="text" name="id" value="musthave" readOnly/>
+                            <input type="text" name="id" value="musthave" readOnly/> 
                         </td>
                     </tr>
                     <tr>
