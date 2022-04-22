@@ -47,34 +47,34 @@ class ListContents extends Component{
         let listTr = [];
         //출력할 리스트 항목의 갯수만큼 반복
         for(var i=0; i<this.state.blists.length; i++){
-        //인덱스를 통해 해당 반복에서 출력할 객체를 저장
-        var row = this.state.blists[i];
-        //push()를 통해 배열의 마지막 부분에 데이터 삽입
-        /*
-        tr태그에 key는 리엑트가 중복되지 않는 key prop을 요구하므로 삽입된다.
-        data-id : event 객체를 통해 dataset.id 속성값으로 지정된 값을 얻어올 수 있다.
-        여기서는 게시물의 일련번호를 전달할 목적으로 사용된다.
-        */
-        listTr.push(
-            <tr align="center" key={row.num}>
-                <td>{row.num}</td>
-                <td align='left'><a href={row.num} data-id={row.num} onClick={
-                    (e)=>{
-                    //회면에 새로고침을 차단한다.
-                    e.preventDefault();
-                    /*
-                    부모 컴포넌트가 props를 통해 전달한 값(함수)을 통해 파라미터를 전달한다.
-                    게시물의 일련번호와 화면의 mode값이 사용된다.
-                    */
-                    this.props.myBoardView(e.target.dataset.id, 'view');
-                    }
-                }>{row.title}</a>
-                </td>
-                <td align='center'>{row.id}</td>
-                <td align='center'>{row.visitcount}</td>
-                <td align='center'>{row.postdate}</td>
-            </tr>
-        );
+            //인덱스를 통해 해당 반복에서 출력할 객체를 저장
+            var row = this.state.blists[i];
+            //push()를 통해 배열의 마지막 부분에 데이터 삽입
+            /*
+            tr태그에 key는 리엑트가 중복되지 않는 key prop을 요구하므로 삽입된다.
+            data-id : event 객체를 통해 dataset.id 속성값으로 지정된 값을 얻어올 수 있다.
+            여기서는 게시물의 일련번호를 전달할 목적으로 사용된다.
+            */
+            listTr.push(
+                <tr align="center" key={row.num}>
+                    <td>{row.num}</td>
+                    <td align='left'><a href={row.num} data-id={row.num} onClick={
+                        (e)=>{
+                        //회면에 새로고침을 차단한다.
+                        e.preventDefault();
+                        /*
+                        부모 컴포넌트가 props를 통해 전달한 값(함수)을 통해 파라미터를 전달한다.
+                        게시물의 일련번호와 화면의 mode값이 사용된다.
+                        */
+                        this.props.myBoardView(e.target.dataset.id, 'view');
+                        }
+                    }>{row.title}</a>
+                    </td>
+                    <td align='center'>{row.id}</td>
+                    <td align='center'>{row.visitcount}</td>
+                    <td align='center'>{row.postdate}</td>
+                </tr>
+            );
         }
         return(
             <div className="col-lg-10" id="lay_contents">

@@ -46,9 +46,9 @@ class ViewContents extends Component{
                         <td>내용</td>
                         <td colSpan="3" height="100">{
                             this.state.bview.content.split('\n').map(line=>{
-                            return (
-                                <span key={Math.random()}>{line}<br/></span>
-                            );
+                                return (
+                                    <span key={Math.random()}>{line}<br/></span>
+                                );
                             })
                         }</td>
                     </tr>
